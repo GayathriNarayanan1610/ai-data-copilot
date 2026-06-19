@@ -25,6 +25,17 @@ schema, and both a UI and an API.
    than invent an answer.
 6. **Returns a results table**, plus the SQL it ran and how many attempts it took.
 
+## Demo
+
+<img width="1192" height="743" alt="image" src="https://github.com/user-attachments/assets/0cd5f684-8a55-4d48-9aa3-74fe6df85d29" />
+
+<img width="952" height="703" alt="image" src="https://github.com/user-attachments/assets/e27702b2-e60e-421a-8cdf-4677b850760b" />
+
+<img width="927" height="537" alt="image" src="https://github.com/user-attachments/assets/cc3608bc-ae80-4022-bf3d-1fa888f1ed70" />
+
+<img width="998" height="525" alt="image" src="https://github.com/user-attachments/assets/1438649a-056c-4238-b63a-804c52f15ac6" />
+
+
 ## Why this version matters (what changed from the prototype)
 
 | Capability | Prototype | This version |
