@@ -13,6 +13,8 @@ prototype proved the idea (LLM writes SQL, app runs it); this version adds the p
 that make it trustworthy: guardrails, self-correction, grounding, a real multi-table
 schema, and both a UI and an API.
 
+Deployed cloud url  https://copilot.jollyglacier-1f65987e.uksouth.azurecontainerapps.io/
+
 ## What it does
 
 1. **Generates SQL** from a natural-language question, using the live database schema.
