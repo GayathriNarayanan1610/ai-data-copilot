@@ -1,4 +1,10 @@
-"""Prompt templates (plain strings; the real LLM wrappers format them)."""
+"""Prompt templates for the LLM planner.
+
+Plain strings — the LangChain wrappers in ``llm.py`` format them with the live
+schema and question. Kept deliberately strict: SELECT-only, schema-grounded, and a
+hard ``NO_QUERY`` sentinel for questions the schema can't answer (grounding, so the
+model refuses instead of hallucinating tables/columns).
+"""
 
 SQL_PROMPT = """You are a careful SQLite expert. Using ONLY the schema below, write a
 single SQL query that answers the user's question.

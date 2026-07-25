@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-data-copilot"
+version = "1.0.0"
+description = "Natural-language-to-SQL data copilot with guardrails, self-correction, and an execution-accuracy evaluation harness."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Your Name", email = "you@example.com" }]
+keywords = ["nl2sql", "text-to-sql", "llm", "fastapi", "sqlite"]
+
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "pandas>=2.1",
+]
+
+[project.optional-dependencies]
+# Streamlit front end.
+ui = ["streamlit>=1.36"]
+# Real model backends (kept optional so the mock pipeline installs with no heavy deps).
+llm = [
+    "langchain-core>=0.2",
+    "langchain-ollama>=0.1",
+    "langchain-google-genai>=1.0",
+]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "httpx>=0.27",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pre-commit>=3.7",
+]
+
+[project.scripts]
+datacopilot = "datacopilot.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# --------------------------------------------------------------------------
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q --cov=datacopilot --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "eval", "ui.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]  # FastAPI uses function calls in argument defaults (Depends etc.)
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["datacopilot"]
+mypy_path = "src"
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+warn_unused_ignores = true

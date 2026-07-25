@@ -5,9 +5,9 @@ import os
 
 import streamlit as st
 
-from app.config import settings
-from app.copilot import Copilot
-from app.seed import create
+from datacopilot.config import settings
+from datacopilot.copilot import Copilot
+from datacopilot.seed import create
 
 st.set_page_config(page_title="AI Data Copilot", layout="centered")
 
@@ -30,8 +30,9 @@ with st.sidebar:
     st.code(copilot.schema, language="sql")
     st.subheader("Try")
     st.write("- How many students are there?\n- What is the average score per city?\n"
-             "- Top student in each subject?\n- Average score by hometown? *(self-corrects)*\n"
+             "- Top score in each subject?\n- Average score by hometown? *(self-corrects)*\n"
              "- Delete all grades *(blocked)*")
+    st.caption(f"Backend: `{settings.llm_mode}`")
 
 question = st.text_input("Your question", placeholder="e.g., What is the average score per city?")
 
@@ -45,7 +46,9 @@ if question:
     if res.status == "success":
         st.subheader("Result")
         st.dataframe(res.rows, use_container_width=True)
-        st.caption(f"{res.to_dict()['row_count']} row(s)")
+        st.caption(
+            f"{res.to_dict()['row_count']} row(s) · {res.latency_ms:.0f} ms · mode: {res.mode}"
+        )
     elif res.status == "refused":
         st.warning(res.error)
     elif res.status == "blocked":
