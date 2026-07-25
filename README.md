@@ -5,6 +5,8 @@ SQL** and the results. Ships with a deterministic offline mode (no API key, no
 network) and an **execution-accuracy evaluation harness**, so correctness is measured,
 not assumed.
 
+cloud url - https://copilot.jollyglacier-1f65987e.uksouth.azurecontainerapps.io/
+
 ```
 "What is the average score by city?"
   -> SELECT s.city, ROUND(AVG(g.score),1) FROM students s
